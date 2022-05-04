@@ -68,6 +68,13 @@
 			</section>
 
 			<!--  地圖  -->
+			<section id="items" class="items">
+				<h1>
+					<span class="award">
+						<span>你獲得的獎品是？</span>
+					</span>
+				</h1>
+			</section>
 			<section id="map" class="map" style="display:none">
 				<iframe frameborder="0" style="border:0" src="" allowfullscreen></iframe>
 			</section>
@@ -104,8 +111,8 @@
 		fetch(url)
 			.then(res => res.json())
 			.then(data => {
-				let vages = ['頭獎', '1', '2', '3', '4', '5']; // 素
-				// let meats = ['頭獎', '1', '2', '3', '4', '5']; // 葷
+				let vages = ['頭獎', '獎品 1', '獎品 2', '獎品 3', '獎品 4', '獎品 5']; // 素
+				let meats = ['專題後揹包', '公仔整組', '公仔(2隻組)', '束口袋後背包', '頭腦吊牌', 'L資料夾']; // 葷
 
 				// 分葷、素，塞入陣列
 				// const d = data.feed.entry, len =  d.length;
@@ -118,12 +125,11 @@
 				// 點擊按鈕後執行
 				let r; // 亂數
 				let max, min; // 陣列的最大、小值
-				let txt; // 結果
-
+				let txt, object; // 結果
 
 				// 地圖
 				const map = document.querySelector('#map iframe');
-
+				// const award = document.querySelector('#items');
 				// 按鈕
 				const btn = document.querySelector('.btn-start');
 				
@@ -133,7 +139,7 @@
 					// 選店家 fn
 					const chooseShop = toggle => {
 
-						// 取亂數 fn
+						// 取亂數 fn 改機率
 						r = () => {
 							max = toggle.length - 1;
 							min = 0;
@@ -150,6 +156,7 @@
 						// 禁止按鈕再被點擊
 						e.target.classList.add('not-allow');
 
+						const result = document.querySelectorAll('.award > span');
 						// 加入動畫 class name
 						const list = document.querySelectorAll('.wrap > span');
 						Array.prototype.forEach.call(list, l => l.classList.add('span-' + (toggle.length - 1)));
@@ -158,11 +165,14 @@
 						txt = toggle[r()];
 						list[0].innerText = txt;
 						
+						
+						
 						// 移除動畫
 						setTimeout(() => {
 							// 停止拉霸動畫
 							Array.prototype.forEach.call(list, l => l.removeAttribute('class'));
-
+							object = toggle[r()];
+							result[0].innerText = txt;
 							// 改變地圖位置
 							map.src = 'https://www.google.com/maps/embed/v1/place?key=' + embedApiKey + '&q=' + txt;
 
