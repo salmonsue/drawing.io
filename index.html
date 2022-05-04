@@ -165,15 +165,14 @@
 						txt = toggle[r()];
 						list[0].innerText = txt;
 						
-						
-						
 						// 移除動畫
 						setTimeout(() => {
 							// 停止拉霸動畫
 							Array.prototype.forEach.call(list, l => l.removeAttribute('class'));
+							
+							// 改變地圖位置
 							object = toggle[r()];
 							result[0].innerText = txt;
-							// 改變地圖位置
 							map.src = 'https://www.google.com/maps/embed/v1/place?key=' + embedApiKey + '&q=' + txt;
 
 						}, duration);
