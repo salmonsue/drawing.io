@@ -71,7 +71,7 @@
 			<section id="items" class="items">
 				<h1>
 					<span class="award">
-						<span>你獲得的獎品是？</span>
+						<span>我是誰？</span>
 					</span>
 				</h1>
 			</section>
@@ -111,17 +111,17 @@
 		fetch(url)
 			.then(res => res.json())
 			.then(data => {
-				let vages = ['頭獎', '獎品 1', '獎品 2', '獎品 3', '獎品 4', '獎品 5']; // 素
-				let meats = ['專題後背包', '公仔整組', '公仔(2隻組)', '束口袋', '頭腦吊牌', 'L資料夾']; // 葷
-
-				// 分葷、素，塞入陣列
-				// const d = data.feed.entry, len =  d.length;
-				const d =['頭獎', '1', '2', '3', '4', '5'];
-				// for(let i = 0; i < len; i++) {
-					// d[i].gsx$vage.$t === '是' ? vages.push(d[i].gsx$shops.$t) : meats.push(d[i].gsx$shops.$t);
-				// }
+				let vages = ['頭獎', '獎品 1', '獎品 2', '獎品 2', '獎品 2', '獎品 3', '獎品 3', '獎品 3', '獎品 3', '獎品 3', '獎品 3'
+				, '獎品 3', '獎品 4', '獎品 4', '獎品 4', '獎品 4', '獎品 4', '獎品 4', '獎品 4', '獎品 4', '獎品 4', '獎品 4', '獎品 5'
+				, '獎品 5', '獎品 5', '獎品 5', '獎品 5', '獎品 5', '獎品 5', '獎品 5', '獎品 5', '獎品 5', '獎品 5', '獎品 5', '獎品 5'
+				, '獎品 5' ,'獎品 5', '獎品 5', '獎品 5', '獎品 5']; // 獎項 40 = 1 1 3 7 10 18 => 2.5 2.5 7.5 17.5 25 45
+				let meats = ['專題後背包', '公仔整組', '公仔(2隻組)', '公仔(2隻組)', '公仔(2隻組)', '束口袋', '束口袋', '束口袋', '束口袋'
+				, '束口袋', '束口袋', '束口袋', '頭腦吊牌', '頭腦吊牌', '頭腦吊牌', '頭腦吊牌', '頭腦吊牌', '頭腦吊牌', '頭腦吊牌', '頭腦吊牌'
+				, '頭腦吊牌','頭腦吊牌', 'L資料夾', 'L資料夾', 'L資料夾', 'L資料夾', 'L資料夾', 'L資料夾', 'L資料夾', 'L資料夾', 'L資料夾'
+				, 'L資料夾', 'L資料夾', 'L資料夾', 'L資料夾', 'L資料夾', 'L資料夾', 'L資料夾', 'L資料夾', 'L資料夾']; //品項
 				
-
+				let option = ['頭獎', '獎品 1', '獎品 2', '獎品 3', '獎品 4', '獎品 5'];
+				
 				// 點擊按鈕後執行
 				let r; // 亂數
 				let max, min; // 陣列的最大、小值
@@ -149,8 +149,8 @@
 						// 清空、插入選項
 						let input = document.querySelector('.wrap');
 						input.innerHTML = '';
-						for(let i = 0; i < toggle.length; i++) {
-							input.insertAdjacentHTML('beforeend', '<span>' + toggle[i] + '</span>');
+						for(let i = 0; i < option.length; i++) {
+							input.insertAdjacentHTML('beforeend', '<span>' + option[i] + '</span>');
 						}
 
 						// 禁止按鈕再被點擊
@@ -158,7 +158,7 @@
 
 						// 加入動畫 class name
 						const list = document.querySelectorAll('.wrap > span');
-						Array.prototype.forEach.call(list, l => l.classList.add('span-' + (toggle.length - 1)));
+						Array.prototype.forEach.call(list, l => l.classList.add('span-' + (option.length - 1)));
 
 						// 亂數決定中選店家
 						let idx= r();
