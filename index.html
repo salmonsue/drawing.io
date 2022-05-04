@@ -112,7 +112,7 @@
 			.then(res => res.json())
 			.then(data => {
 				let vages = ['頭獎', '獎品 1', '獎品 2', '獎品 3', '獎品 4', '獎品 5']; // 素
-				let meats = ['專題後揹包', '公仔整組', '公仔(2隻組)', '束口袋後背包', '頭腦吊牌', 'L資料夾']; // 葷
+				let meats = ['專題後背包', '公仔整組', '公仔(2隻組)', '束口袋', '頭腦吊牌', 'L資料夾']; // 葷
 
 				// 分葷、素，塞入陣列
 				// const d = data.feed.entry, len =  d.length;
@@ -156,23 +156,24 @@
 						// 禁止按鈕再被點擊
 						e.target.classList.add('not-allow');
 
-						const result = document.querySelectorAll('.award > span');
 						// 加入動畫 class name
 						const list = document.querySelectorAll('.wrap > span');
 						Array.prototype.forEach.call(list, l => l.classList.add('span-' + (toggle.length - 1)));
 
 						// 亂數決定中選店家
-						txt = toggle[r()];
-						list[0].innerText = txt;
+						let idx= r();
+						txt = toggle[idx];
+						list[0].innerText = txt;						
 						
 						// 移除動畫
 						setTimeout(() => {
 							// 停止拉霸動畫
 							Array.prototype.forEach.call(list, l => l.removeAttribute('class'));
 							
+							const result = document.querySelectorAll('.award > span');
+							object = meats[idx];
+							result[0].innerText = object;
 							// 改變地圖位置
-							object = toggle[r()];
-							result[0].innerText = txt;
 							map.src = 'https://www.google.com/maps/embed/v1/place?key=' + embedApiKey + '&q=' + txt;
 
 						}, duration);
